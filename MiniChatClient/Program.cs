@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MiniChatServer1
+namespace MiniChatClient
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Server server = new Server();
-            server.Start();
         }
     }
 }
