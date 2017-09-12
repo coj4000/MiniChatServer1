@@ -11,23 +11,39 @@ namespace MiniChatClient
 {
     class Client
     {
+        private readonly int PORT;
+        public Client(int port)
+        {
+            this.PORT = port;
+        }
         public void Start()
-        { 
-        String SendStr = "Package";
-            using (TcpClient socket = new TcpClient("localhost", 7070))
+        {
+            String nameofclient = "";
+            String nameofserver = "";
+            Console.Write("Who are you ");
+            nameofclient = Console.ReadLine();
+
+            using (TcpClient socket = new TcpClient("localhost", PORT))
             using (NetworkStream ns = socket.GetStream())
             using (StreamReader sr = new StreamReader(ns))
             using (StreamWriter sw = new StreamWriter(ns))
             {
-                foreach (var s in Console.ReadLine())
-                {
-                    sw.WriteLine(SendStr);
-                    sw.Flush();
 
-                    string incomingstr = sr.ReadLine();
-    Console.WriteLine("Modtaget ", incomingstr);
-                }
-               
+                /*
+                 * Hello between client server
+                 */
+
+                //client
+                String line = "";
+                String myLine = nameofclient;
+
+                sw.WriteLine();
+                sw.Flush();
+
+                string incomingstr = sr.ReadLine();
+                Console.WriteLine("Modtaget ", incomingstr);
+
+
 
 
             }
