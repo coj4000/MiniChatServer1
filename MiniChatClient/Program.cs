@@ -8,8 +8,13 @@ namespace MiniChatClient
 {
     class Program
     {
+        private const int PORT = 7070;
         static void Main(string[] args)
         {
+            Client server = new Client(PORT);
+            server.Start();
+
+            Console.ReadLine();
         }
     }
 }

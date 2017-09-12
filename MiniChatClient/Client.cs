@@ -26,7 +26,7 @@ namespace MiniChatClient
             using (TcpClient socket = new TcpClient("localhost", PORT))
             using (NetworkStream ns = socket.GetStream())
             using (StreamReader sr = new StreamReader(ns))
-            using (StreamWriter sw = new StreamWriter(ns))
+            using (StreamWriter sw = new StreamWriter(ns) {AutoFlush = true})
             {
 
                 /*
@@ -36,12 +36,29 @@ namespace MiniChatClient
                 //client
                 String line = "";
                 String myLine = nameofclient;
+                sw.WriteLine($"Hello: {nameofclient}");
 
-                sw.WriteLine();
-                sw.Flush();
+                //Server
+                String fromServer = sr.ReadLine();
+                String[] strs = fromServer.Split(' ');
+                nameofserver = strs[1];
 
-                string incomingstr = sr.ReadLine();
-                Console.WriteLine("Modtaget ", incomingstr);
+                while (!myLine.Trim().ToLower().Equals("stop"))
+                {
+                    //Chat Loop Start
+                    Console.Write($"{nameofclient}: ");
+                    myLine = Console.ReadLine().Trim();
+                    sw.WriteLine(myLine);
+                    if (myLine.ToLower().Equals("stop"))
+                    {
+                        line = "stop";
+                    }
+                    else
+                    {
+                        line = sr.ReadLine();
+                    }
+                    Console.WriteLine($"{nameofserver}: {line}");
+                }
 
 
 

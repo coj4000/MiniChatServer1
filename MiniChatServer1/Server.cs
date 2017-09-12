@@ -43,7 +43,7 @@ namespace MiniChatServer1
             using (StreamWriter sw = new StreamWriter(ns))
             {
                 //Server
-                Console.WriteLine("Whom ist thou (Server)");
+                Console.Write("Whom ist thou (Server)");
                 String myLine = Console.ReadLine();
                 nameofserver = myLine;
                 //Client
